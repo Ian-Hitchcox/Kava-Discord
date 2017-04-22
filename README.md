@@ -16,7 +16,7 @@ Discord bots developed for Divided We Fall
 
 /links -- creates an embedded object that displays links for DWF like the steam page, youtube, twitter etc
 
-/looking-for-group -- gives the user the 'looking-for-game' role which turns their username green in discord and sorts them into a group on the right, making it easy for others to see who is looking for a game
+/looking-for-game -- gives the user the 'looking-for-game' role which turns their username green in discord and sorts them into a group on the right, making it easy for others to see who is looking for a game
 
 
 # Known issues
