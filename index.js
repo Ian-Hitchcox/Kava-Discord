@@ -10,6 +10,8 @@ const Streams = require('./commands/streams.js');
 const client = new Discord.Client();
 const prefix = '/';
 
+let config = require('config.json');
+
 
 client.login("MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY");
 
@@ -43,7 +45,7 @@ client.on("message", (message) => {
     // Looking for game
     if (message.content === prefix + 'looking-for-game') {
 
-        let guild = client.guilds.find(g => g.name === 'testeen');        
+        let guild = client.guilds.find(g => g.name === config.server);        
 
         if (guild) {
             let member = guild.member(message.author);
