@@ -1,3 +1,5 @@
+let config = require('../config.json');
+
 function GetAllLinks(embed, callback) {
     if (embed && callback) {
             
@@ -5,7 +7,7 @@ function GetAllLinks(embed, callback) {
             embed.setTitle('Divided We Fall')
 
             // Author -- text and thummbnail
-            .setAuthor('KAVA Game Studio', 'http://www.kavagamestudio.com/press/images/icon.png')
+            .setAuthor('KAVA Game Studio', config.links.images.dwf-logo)
             /*
             * Alternatively, use '#00AE86', [0, 174, 134] or an integer number.
             */
@@ -18,10 +20,10 @@ function GetAllLinks(embed, callback) {
             //.setFooter('Nice text at the bottom', 'https://goo.gl/hkFYh0')
 
             // Sets the image at the bottom
-            .setImage('http://www.dividedwefall.co/images/logo.png')
+            .setImage(config.links.images.dwf-logo)
 
             // Sets thumbnail on the right
-            .setThumbnail('http://www.kavagamestudio.com/press/images/icon.png')
+            .setThumbnail(config.links.images.kava-logo)
             
             /*
             * Takes a Date object, defaults to current date.
@@ -29,20 +31,19 @@ function GetAllLinks(embed, callback) {
             .setTimestamp()
 
 
-            .setURL('http://dividedwefall.co/#/')
+            .setURL(config.links.website)
             
             .addField('\u200b', '\u200b', true)
 
-            .addField('Steam page', 'http://store.steampowered.com/app/495580')            
-            .addField('Forums', 'http://steamcommunity.com/app/495580/discussions/')
-            .addField('Guides', 'http://steamcommunity.com/app/495580/guides')
+            .addField('Steam page', config.links.steam.store)
+            .addField('Forums', config.links.steam.forums)
+            .addField('Guides', config.links.steam.guides)
             
-            .addField('Subreddit', 'http://www.reddit.com/r/DividedWeFall')
+            .addField('Subreddit', config.links.subreddit)
 
-            .addField('Youtube', 'https://gaming.youtube.com/c/KAVAGameStudio')
-            .addField('Twitter', 'http://www.twitter.com')
-            .addField('Facebook', 'http://facebook.com/dividedwefallgame')
-
+            .addField('Youtube', config.links.youtube)
+            .addField('Twitter', config.links.twitter)
+            .addField('Facebook', config.links.facebook)
             
             /*
             * Blank field, useful to create some space.

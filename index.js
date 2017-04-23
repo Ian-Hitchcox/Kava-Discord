@@ -4,13 +4,14 @@ const Discord = require('discord.js');
 const Stats = require('./commands/stats.js');
 const Members = require('./commands/members.js');
 const Links = require('./commands/links.js');
+const Streams = require('./commands/streams.js');
 
 // Set up constants
 const client = new Discord.Client();
 const prefix = '/';
 
 
-client.login("BOT-TOKEN-HERE");
+client.login("MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY");
 
 client.on('ready', () => {
   console.log('I am ready!');
@@ -49,13 +50,6 @@ client.on("message", (message) => {
                         
             Members.LookingForGame((data) => {                
 
-                // Not sure on whether these should be in to avoid spam
-                /*if (data === 'added') {
-                    message.channel.sendMessage('*' + message.author + ' is looking for a game*');
-                } else if (data === 'removed') {
-                    message.channel.sendMessage('*' + message.author + ' is no longer looking for a game*');
-                }*/
-
             }, guild, member);                       
         }
         
@@ -75,6 +69,25 @@ client.on("message", (message) => {
         '..gathering links...',
         { disableEveryone: true }
         );
+    }
+
+    if (message.content === prefix + 'dev-stream') {
+        let embed = new Discord.RichEmbed();
+
+        embed = Streams.GetDevStreamInfo(embed, (data) => {
+            return data;
+        });
+        
+        message.channel.sendEmbed(
+        embed,
+        '..gathering stream info...',
+        { disableEveryone: true }
+        );
+    }
+
+    if (message.content === prefix + 'dev-stream-update') {
+
+        Streams.UpdateNextStreamDate();
     }
     
 });

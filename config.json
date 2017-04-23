@@ -1,0 +1,31 @@
+{
+    "server": "testeen",
+    "links" : {
+        "steam" : {
+            "store": "http://store.steampowered.com/app/495580",
+            "discussions": "http://store.steampowered.com/app/495580/discussions",
+            "guides": "http://store.steampowered.com/app/495580/guides"
+        },
+
+        "images" : {
+            "dwfLogo": "http://www.dividedwefall.co/images/logo.png",
+            "kavaLogo": "http://www.kavagamestudio.com/press/images/icon.png"
+        },
+        
+        "website": "http://dividedwefall.co/#/",
+        "subreddit": "http://www.reddit.com/r/dividedwefall",
+        "twitter": "http://twitter.com/KAVA_gamestudio",
+        "facebook": "http://facebook.com/dividedwefallgame",
+        "youtube": "https://gaming.youtube.com/c/KAVAGameStudio"
+    },
+    "stream" : {
+        "previous": {
+            "date": "2017-04-19T19:00:00",
+            "link": "https://youtu.be/7p4H7h1L66s"
+        },
+        "next": {
+            "date": "",
+            "link": "https://gaming.youtube.com/c/KAVAGameStudio/live"
+        }
+    }    
+}
