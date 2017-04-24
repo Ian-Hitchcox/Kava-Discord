@@ -22,6 +22,23 @@ client.on('ready', () => {
 
 client.on("message", (message) => {
 
+    // Help
+    if (message.content === config.prefix + 'help') {
+
+        let embed = new Discord.RichEmbed();
+
+        embed = Commands.DisplayAllCommands(embed, (data) => {
+            return data;
+        });
+
+        message.channel.sendEmbed(
+        embed,
+        '..generating help...',
+        { disableEveryone: true }
+        );   
+
+    }
+
     // Leaderboard
     if (message.content === config.prefix + 'leaderboard') {
 
