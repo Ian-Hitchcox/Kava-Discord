@@ -10,7 +10,7 @@ const Streams = require('./commands/streams.js');
 const client = new Discord.Client();
 const prefix = '/';
 
-let config = require('config.json');
+let config = require('./config.json');
 
 
 client.login("MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY");
