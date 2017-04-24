@@ -1,68 +1,61 @@
 // Require modules
 const Discord = require('discord.js');
-
-const Stats = require('./commands/stats.js');
-const Members = require('./commands/members.js');
-const Links = require('./commands/links.js');
-const Streams = require('./commands/streams.js');
-
-// Set up constants
 const client = new Discord.Client();
-const prefix = '/';
+
+const Commands = require('./commands/commands.js');
+const Utils = require('./utils/utils.js');
 
 let config = require('./config.json');
 
+// Our bot
+client.login("MzA2MDQzMTU5NTg5Mjg5OTg0.C9-Ang.GefddMkSR99lpFq44NFqz3_oB9Q");
 
-client.login("MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY");
+// my bot
+// MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY
+
+// kava-test-bot
+// MzA2MDQzMTU5NTg5Mjg5OTg0.C9-Ang.GefddMkSR99lpFq44NFqz3_oB9Q
 
 client.on('ready', () => {
-  console.log('I am ready!');
+  console.log('I am ready!');  
 });
 
 client.on("message", (message) => {
 
     // Leaderboard
-    if (message.content === prefix + 'leaderboard') {
+    if (message.content === config.prefix + 'leaderboard') {
 
-        Stats.GetLeaderboard((data) => {
-
-            // Fire off a message to the channel with the table data
+        Commands.Stats.GetLeaderboard((data) => {
             message.channel.sendMessage(data);
         });   
 
     }
 
     // Regiment Leaderboard
-    if (message.content === prefix + 'regiment-leaderboard') {
+    if (message.content === config.prefix + 'regiment-leaderboard') {
 
         // Will need to parse any passed in args
-        Stats.GetRegimentLeaderboard((data) => {            
+        Commands.Stats.GetRegimentLeaderboard((data) => {            
             message.channel.sendMessage(data);
         });
 
     }
 
     // Looking for game
-    if (message.content === prefix + 'looking-for-game') {
+    if (message.content === config.prefix + 'looking-for-game') {
+                    
+        Commands.Members.LookingForGame((data) => {                
 
-        let guild = client.guilds.find(g => g.name === config.server);        
-
-        if (guild) {
-            let member = guild.member(message.author);
-                        
-            Members.LookingForGame((data) => {                
-
-            }, guild, member);                       
-        }
+        }, message.guild, message.guild.member(message.author));                       
         
     }
 
     // Links
-    if (message.content === prefix + 'links') {
+    if (message.content === config.prefix + 'links') {
                     
         let embed = new Discord.RichEmbed();
 
-        embed = Links.GetAllLinks(embed, (data) => {
+        embed = Commands.Links.GetAllLinks(embed, (data) => {
             return data;
         });
 
@@ -73,10 +66,10 @@ client.on("message", (message) => {
         );
     }
 
-    if (message.content === prefix + 'dev-stream') {
+    if (message.content === config.prefix + 'dev-stream') {
         let embed = new Discord.RichEmbed();
 
-        embed = Streams.GetDevStreamInfo(embed, (data) => {
+        embed = Commands.Streams.GetDevStreamInfo(embed, (data) => {
             return data;
         });
         
@@ -87,9 +80,33 @@ client.on("message", (message) => {
         );
     }
 
-    if (message.content === prefix + 'dev-stream-update') {
+    if (message.content.startsWith(config.prefix + 'dev-stream-update-previous')) {
 
-        Streams.UpdateNextStreamDate();
+        // Get passed in args        
+        let args = message.content.split(' ').slice(1);
+
+        // Get args supplying date and link
+        let member = message.guild.member(message.author);
+        if (Utils.MemberHelper.CheckIfAdmin(member) && args.length === 2) {
+            Commands.Streams.UpdatePreviousStreamConfig(args[0], args[1], () => {
+                // Decide how to report to the user, either in DM or require it to be posted in a seperate channel                
+            });
+        }
+    }
+
+    if (message.content === config.prefix + 'dev-stream-update-next') {
+
+        // Get passed in args        
+        let args = message.content.split(' ').slice(1);
+        
+        // Get args supplying date
+        let member = message.guild.member(message.author);
+        if (Utils.MemberHelper.CheckIfAdmin(member) && args.length === 2) {
+            Commands.Streams.UpdateNextStreamConfig(args[0], (data) => {
+                // Decide how to report to the user, either in DM or require it to be posted in a seperate channel
+            });
+        }
     }
     
 });
+

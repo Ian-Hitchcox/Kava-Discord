@@ -8,7 +8,7 @@ function LookingForGame(callback, guild, member) {
         // Try to find the role in the guild
         let lfgRole = guild.roles.find(r => r.name.indexOf(lfg) > -1);        
 
-        if (lfgRole) {
+        if (lfgRole) {            
             
             // If the user already has the role we remove it, otherwise add it
             if (member.roles.find(r => r.name === lfgRole.name)) {                

@@ -34,20 +34,57 @@ function GetDevStreamInfo(embed, callback) {
      return null;
 }
 
-function UpdateNextStreamDate() {    
+function UpdatePreviousStreamConfig(previousDate, previousLink, callback) {
+    if (previousDate && moment(previousDate).isValid() && previousLink && callback) {
+        
+        config.stream.previous.date = previousDate;
+        config.stream.previous.link = previousLink
+
+        UpdateNextStreamDate();
+
+        callback('Previous date updated with ', config.stream.previous.date + ' ' + config.stream.previous.link);
+        
+    } else {
+        // return an error to the user
+        // review requirements of passed in date, might be too strict like this
+        callback('You supplied invalid data. Date should be in format DD-MM-YYYYTHH:mm:ss:SSSZ');
+    }
+}
+
+function UpdateNextStreamDate(nextDate, callback) {    
     
-    config.stream.next.date = moment(config.stream.previous.date).add(2, 'weeks').format('DD-MM-YYYY HH:mm');
+    if (nextDate && moment(nextDate).isValid() && callback) {
+        
+        config.stream.next.date = moment(config.stream.previous.date).add(2, 'weeks');    
 
-    console.log('config', config);
+        callback('Next stream date updated with ', config.stream.next.date);
 
-    fs.writeFileSync('../config.json', JSON.stringify(config), 'utf8', () => {
-        console.log('File written');
-    });
+    } else {
+        callback('You supplied invalid data. Date should be in format DD-MM-YYYYTHH:mm:ss:SSSZ');
+    }
+    
+    WriteConfigToFile(config);
+
+}
+
+function WriteConfigToFile(configToWrite) {
+    if (configToWrite) {
+        fs.writeFile('./config.json', JSON.stringify(configToWrite), 'utf8', (err) => {
+            if (err) {
+                console.log('err', err);
+                return;
+            }
+        
+            console.log('Config file updated with: ', config);
+        });
+    }
+    
 }
 
 module.exports = {
     
     GetDevStreamInfo: GetDevStreamInfo,
-    UpdateNextStreamDate: UpdateNextStreamDate
+    UpdateNextStreamDate: UpdateNextStreamDate,
+    UpdatePreviousStreamConfig: UpdatePreviousStreamConfig
 
 }
