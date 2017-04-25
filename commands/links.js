@@ -36,7 +36,7 @@ function GetAllLinks(embed, callback) {
             .addField('\u200b', '\u200b', true)
 
             .addField('Steam page', config.links.steam.store)
-            .addField('Forums', config.links.steam.discussion)
+            .addField('Forums', config.links.steam.discussions)
             .addField('Guides', config.links.steam.guides)
             
             .addField('Subreddit', config.links.subreddit)
