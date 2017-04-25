@@ -7,14 +7,13 @@ const Utils = require('./utils/utils.js');
 
 let config = require('./config.json');
 
-// Our bot
-client.login("MzA2MDQzMTU5NTg5Mjg5OTg0.C9-Ang.GefddMkSR99lpFq44NFqz3_oB9Q");
-
 // my bot
-// MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY
+client.login('MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY');
+//MzA0NjgzOTgzOTQwMzU0MDQ4.C-Cs4A.8QMdrgpU3oZ9Enp4iNnqegJ530w
 
 // kava-test-bot
-// MzA2MDQzMTU5NTg5Mjg5OTg0.C9-Ang.GefddMkSR99lpFq44NFqz3_oB9Q
+//client.login("MzA2MDQzMTU5NTg5Mjg5OTg0.C9-Ang.GefddMkSR99lpFq44NFqz3_oB9Q");
+// MzA2MDQzMTU5NTg5Mjg5OTg0.C-Cr9A.XqbxXeSKXageJtUnXueqqpX2Hfk
 
 client.on('ready', () => {
   console.log('I am ready!');  
@@ -51,11 +50,12 @@ client.on("message", (message) => {
     // Regiment Leaderboard
     if (message.content === config.prefix + 'regiment-leaderboard') {
 
+        let embed = new Discord.RichEmbed();
+        
         // Will need to parse any passed in args
-        Commands.Stats.GetRegimentLeaderboard((data) => {            
+        Commands.Stats.GetRegimentLeaderboard((data) => {        
             message.channel.sendMessage(data);
-        });
-
+        }, undefined, undefined);       
     }
 
     // Looking for game
