@@ -5,7 +5,7 @@ Discord bots developed for Divided We Fall
 * Ensure node v6.0.0 or above is installed
 * Create a discord bot
 * Copy the bots secret token
-* Edit line 13 of index.js with your bots secret token from above
+* Edit line 11 of index.js with your bots secret token from above
 * Run 'npm i' in your terminal at the project root to ensure the discord.js script is installed
 * Ensure the correct server name is used in the config file
 * To start up the bot use 'node index.js' then you can give it commands listed below

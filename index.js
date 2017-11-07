@@ -7,13 +7,8 @@ const Utils = require('./utils/utils.js');
 
 let config = require('./config.json');
 
-// my bot
-client.login('MzA0NjgzOTgzOTQwMzU0MDQ4.C9qOnA.DuguWqeFdyeKxFIbrRBK5UHa1dY');
-//MzA0NjgzOTgzOTQwMzU0MDQ4.C-Cs4A.8QMdrgpU3oZ9Enp4iNnqegJ530w
 
-// kava-test-bot
-//client.login("MzA2MDQzMTU5NTg5Mjg5OTg0.C9-Ang.GefddMkSR99lpFq44NFqz3_oB9Q");
-// MzA2MDQzMTU5NTg5Mjg5OTg0.C-Cr9A.XqbxXeSKXageJtUnXueqqpX2Hfk
+client.login('/* YOUR TOKEN GOES HERE */');
 
 client.on('ready', () => {
   console.log('I am ready!');  
